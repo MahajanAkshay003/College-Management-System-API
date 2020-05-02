@@ -1,0 +1,72 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "Student": {
+    "dataSource": "mongoDb",
+    "public": true
+  },
+  "Department": {
+    "dataSource": "mongoDb",
+    "public": true
+  },
+  "Faculty": {
+    "dataSource": "mongoDb",
+    "public": true
+  },
+  "Batch": {
+    "dataSource": "mongoDb",
+    "public": true
+  },
+  "Subject": {
+    "dataSource": "mongoDb",
+    "public": true
+  },
+  "Semester": {
+    "dataSource": "mongoDb",
+    "public": true
+  },
+  "TimeTable": {
+    "dataSource": "mongoDb",
+    "public": true
+  },
+  "Marks": {
+    "dataSource": "mongoDb",
+    "public": true
+  },
+  "Attendance": {
+    "dataSource": "mongoDb",
+    "public": true
+  },
+  "CollegeUser": {
+    "dataSource": "mongoDb",
+    "public": true
+  },
+  "AccessToken": {
+    "dataSource": "mongoDb",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "mongoDb",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "mongoDb",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "mongoDb",
+    "public": false
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "name": "Faculty",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "firstName": {
+      "type": "string",
+      "required": true
+    },
+    "middleName": {
+      "type": "string",
+      "required": false
+    },
+    "lastName": {
+      "type": "string",
+      "required": true
+    },
+    "departmentId": {
+      "type": "string",
+      "required": true
+    },
+    "workingDays": {
+      "type": "number",
+      "required": true
+    },
+    "isExamCellEmployee": {
+      "type": "boolean",
+      "default": false
+    },
+    "highestEducation": {
+      "type": "string",
+      "required": false
+    },
+    "prefix": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "department": {
+      "type": "belongsTo",
+      "model": "Department",
+      "foreignKey": "departmentId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

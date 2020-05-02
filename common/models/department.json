@@ -1,0 +1,32 @@
+{
+  "name": "Department",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "replaceOnPUT": false,
+  "properties": {
+    "departmentName": {
+      "type": "string",
+      "required": true
+    },
+    "departmentDescription": {
+      "type": "string"
+    },
+    "departmentHodId": {
+      "type": "string",
+      "required": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "departmentHod": {
+      "type": "belongsTo",
+      "model": "Faculty",
+      "foreignKey": "departmentHodId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

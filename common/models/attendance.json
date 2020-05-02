@@ -1,0 +1,41 @@
+{
+  "name": "Attendance",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "studentId": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "timeTableId": {
+      "type": "string",
+      "required": true
+    },
+    "isPresent": {
+      "type": "boolean",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "timetable": {
+      "type": "belongsTo",
+      "model": "TimeTable",
+      "foreignKey": "timeTableId"
+    },
+    "student": {
+      "type": "belongsTo",
+      "model": "Student",
+      "foreignKey": "studentId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

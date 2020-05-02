@@ -1,0 +1,54 @@
+{
+  "name": "Subject",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "semesterId": {
+      "type": "string",
+      "required": true
+    },
+    "departmentId": {
+      "type": "string",
+      "required": true
+    },
+    "subjectName": {
+      "type": "string",
+      "required": true
+    },
+    "subjectDescription": {
+      "type": "string",
+      "required": true
+    },
+    "credits": {
+      "type": "number",
+      "required": true
+    },
+    "subjectType": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "semester": {
+      "type": "belongsTo",
+      "model": "Semester",
+      "foreignKey": "semesterId"
+    },
+    "department": {
+      "type": "belongsTo",
+      "model": "Department",
+      "foreignKey": "departmentId"
+    },
+    "faculty": {
+      "type": "belongsTo",
+      "model": "Faculty",
+      "foreignKey": "departmentId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,13 @@
+{
+  "mongoDb": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "",
+    "database": "collegeDb",
+    "password": "",
+    "name": "mongoDb",
+    "user": "",
+    "useNewUrlParser": true,
+    "connector": "mongodb"
+  }
+}

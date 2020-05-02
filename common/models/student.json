@@ -1,0 +1,115 @@
+{
+  "name": "Student",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "rollNumber": {
+      "type": "string",
+      "required": true
+    },
+    "userType": {
+      "type": "string",
+      "required": true
+    },
+    "firstName": {
+      "type": "string",
+      "required": true
+    },
+    "middleName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string",
+      "required": true
+    },
+    "yearOfAdmission": {
+      "type": "number",
+      "required": true
+    },
+    "departmentId": {
+      "type": "string",
+      "required": true
+    },
+    "batchId": {
+      "type": "string",
+      "required": true
+    },
+    "semesterId": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "string",
+      "required": true
+    },
+    "currentAddress": {
+      "type": "string",
+      "required": true
+    },
+    "permanentAddress": {
+      "type": "string",
+      "required": true
+    },
+    "fatherFirstName": {
+      "type": "string",
+      "required": true
+    },
+    "fatherMiddleName": {
+      "type": "string"
+    },
+    "fatherLastName": {
+      "type": "string",
+      "required": true
+    },
+    "fatherPhoneNumber": {
+      "type": "string",
+      "required": true
+    },
+    "motherFirstName": {
+      "type": "string",
+      "required": true
+    },
+    "motherMiddleName": {
+      "type": "string"
+    },
+    "motherLastName": {
+      "type": "string",
+      "required": true
+    },
+    "motherPhoneNumber": {
+      "type": "string",
+      "required": true
+    },
+    "outsideDelhi": {
+      "type": "boolean",
+      "default": false
+    },
+    "ipuRank": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "department": {
+      "type": "belongsTo",
+      "model": "Department",
+      "foreignKey": "departmentId"
+    },
+    "batch": {
+      "type": "belongsTo",
+      "model": "Batch",
+      "foreignKey": "batchId"
+    },
+    "semester": {
+      "type": "belongsTo",
+      "model": "Semester",
+      "foreignKey": "semesterId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

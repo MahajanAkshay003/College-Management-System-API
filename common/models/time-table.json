@@ -1,0 +1,67 @@
+{
+  "name": "TimeTable",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "startTime": {
+      "type": "string",
+      "required": true
+    },
+    "endTime": {
+      "type": "string",
+      "required": true
+    },
+    "day": {
+      "type": "string",
+      "required": true
+    },
+    "semesterId": {
+      "type": "string",
+      "required": true
+    },
+    "batchId": {
+      "type": "string",
+      "required": true
+    },
+    "facultyId": {
+      "type": "string",
+      "required": true
+    },
+    "subjectId": {
+      "type": "string",
+      "required": true
+    },
+    "year": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "subject": {
+      "type": "belongsTo",
+      "model": "Subject",
+      "foreignKey": "subjectId"
+    },
+    "batch": {
+      "type": "belongsTo",
+      "model": "Batch",
+      "foreignKey": "batchId"
+    },
+    "faculty": {
+      "type": "belongsTo",
+      "model": "Faculty",
+      "foreignKey": "facultyId"
+    },
+    "semester": {
+      "type": "belongsTo",
+      "model": "Semester",
+      "foreignKey": "semesterId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

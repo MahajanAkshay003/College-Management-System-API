@@ -1,0 +1,54 @@
+{
+  "name": "Marks",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "studentId": {
+      "type": "string",
+      "required": true
+    },
+    "semesterId": {
+      "type": "string",
+      "required": true
+    },
+    "subjectId": {
+      "type": "string",
+      "required": true
+    },
+    "externalMarks": {
+      "type": "string",
+      "required": false
+    },
+    "internalExamMarks": {
+      "type": "number",
+      "required": false
+    },
+    "internalExtraMarks": {
+      "type": "number",
+      "required": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "semester": {
+      "type": "hasOne",
+      "model": "Semester",
+      "foreignKey": "semesterId"
+    },
+    "subject": {
+      "type": "hasOne",
+      "model": "Subject",
+      "foreignKey": "subjectId"
+    },
+    "student": {
+      "type": "belongsTo",
+      "model": "Student",
+      "foreignKey": "studentId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
