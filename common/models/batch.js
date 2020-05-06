@@ -3,8 +3,8 @@ const disableRemoteMethods = require('../../server/custom_modules/disableMethods
 
 module.exports = function (Batch) {
   disableRemoteMethods(Batch);
-  Batch.addBatch = function (departmentId, batchDescription, cb) {
-    Batch.create({ departmentId, batchDescription }).then(batchObj => {
+  Batch.addBatch = function (departmentId, batchName, cb) {
+    Batch.create({ departmentId, batchName }).then(batchObj => {
       return cb(null, batchObj);
     }).catch(error => {
       return cb(error);
@@ -23,7 +23,7 @@ module.exports = function (Batch) {
   Batch.remoteMethod('addBatch', {
     accepts: [
       { arg: "departmentId", type: "string" },
-      { arg: "batchDescription", type: "string" }
+      { arg: "batchName", type: "string" }
     ],
     returns: { arg: "data", root: true }
   });

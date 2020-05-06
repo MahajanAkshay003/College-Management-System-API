@@ -15,7 +15,7 @@ module.exports = function(Collegeuser) {
   }
   Collegeuser.remoteMethod('createUser', {
     accepts: [
-      { arg: 'userData', type: 'object', required: true, http: {source: 'body'} },
+      { arg: "userData", type: "object" },
       { arg: 'req', type: 'object', 'http': {source: 'req'} },
     ],
     returns: { arg: "data", root: true }

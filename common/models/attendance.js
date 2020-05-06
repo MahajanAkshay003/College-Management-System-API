@@ -3,7 +3,7 @@ const disableRemoteMethods = require('../../server/custom_modules/disableMethods
 
 module.exports = function(Attendance) {
   disableRemoteMethods(Attendance);
-  Attendance.addAttendance = function (studentId, date, timeTableId, isPresent, cb) {
+  Attendance.addFacultyAttendance = function (studentId, date, timeTableId, isPresent, cb) {
     Attendance.create({
       studentId, date, timeTableId, isPresent
     }).then (attendanceObj => {
@@ -70,11 +70,12 @@ module.exports = function(Attendance) {
       return cb ({ error });
     })
   }
-  Attendance.remoteMethod('addAttendance', {
+  Attendance.remoteMethod('addFacultyAttendance', {
     accepts: [
-      { arg: "studentId", type: "string" },
-      { arg: "date", type: "date" },
-      { arg: "timeTableId", type: "string" },
+      { arg: "facultyId", type: "string" },
+      { arg: "date", type: "number" },
+      { arg: "entryTime", type: "string" },
+      { arg: "exitTime", type: "string" },
       { arg: "isPresent", type: "boolean" }
     ],
     returns: { arg: "data", root: true }

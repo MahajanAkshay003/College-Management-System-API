@@ -1,11 +1,15 @@
 'use strict';
 const disableRemoteMethods = require('../../server/custom_modules/disableMethods/disableMethods');
 
+const getCurrentTimeStamp = () => {
+  return new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()).getTime();
+}
+
 module.exports = function(Faculty) {
   disableRemoteMethods(Faculty);
   Faculty.addFaculty = function (firstName, middleName, lastName, departmentId, workingDays, isExamCellEmployee, highestEducation, prefix, cb) {
     Faculty.create({
-      firstName, middleName, lastName, departmentId, 
+      firstName, middleName, lastName, departmentId,
       workingDays, isExamCellEmployee, highestEducation, prefix
     }).then(facultyObj => {
       cb(null, facultyObj);
@@ -15,36 +19,33 @@ module.exports = function(Faculty) {
   }
   Faculty.deleteFaculty = function (facultyId, cb) {
     Faculty.destroyAll(
-      { where: { id: facultyId } 
+      { where: { id: facultyId }
     }).then(() => {
       cb(null, { success: true });
     }).catch(() => {
       cb({ success: false });
     })
   }
-  Faculty.getFacultiesByDepartment = function (departmentId, cb) {
-    Faculty.find({
-      where: { departmentId },
+
+  Faculty.getFaculties = function (whereFilter, cb) {
+    const findFacultyPromise = Faculty.find({
+      where: whereFilter,
       include: [{
         relation: "department",
-        scope: { include: [{ relation: "departmentHod"}] }
-      }]
-    }).then(faculties => {
+        scope: { include: [{ relation: "departmentHod" }] }
+      }, {
+        relation: "attendance",
+        scope: { where: { data: getCurrentTimeStamp() } }
+      }
+      ]
+    });
+    findFacultyPromise.then(faculties => {
       cb(null, { faculties });
     }).catch(error => {
       cb({ error });
     });
   }
-  Faculty.getFaculties = function (cb) {
-    Faculty.find({ where: {}, include: [{
-      relation: "department",
-      scope: { include: [{ relation: "departmentHod"}] }
-    }]}).then(departments => {
-      cb(null, { departments });
-    }).catch(error => {
-      cb({ error });
-    });
-  }
+
   Faculty.remoteMethod ('addFaculty', {
     accepts: [
       { arg: "firstName", type: "string" },
@@ -58,16 +59,16 @@ module.exports = function(Faculty) {
     ],
     returns: { arg: "data", root: true }
   });
+
   Faculty.remoteMethod ('deleteFaculty', {
     accepts: { arg: "facultyId", type: "string" },
     returns: { arg: "data", root: true }
   });
-  Faculty.remoteMethod ('getFacultiesByDepartment', {
-    accepts: { arg: "departmentId", type: "string" },
-    returns: { arg: "data", root: true }
-  });
+
   Faculty.remoteMethod ('getFaculties', {
-    accepts: [],
+    accepts: [
+      { arg: "whereFilter", type: "object" }
+    ],
     returns: { arg: 'data', root: true }
   })
 };

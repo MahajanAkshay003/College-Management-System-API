@@ -9,8 +9,12 @@ module.exports = (Collegeuser, userData, cb) => {
   } else {
     return cb({ error: "Unknown user type" });
   }
+  let fullName;
+  if (userInfo.middleName !== "") fullName = `${userInfo.firstName} ${userInfo.middleName} ${userInfo.lastName}`;
+  else fullName = `${userInfo.firstName} ${userInfo.lastName}`;
+  userInfo.fullName = fullName;
   selectedUser.create(userInfo).then(newUserObj => {
-    Collegeuser.create({ ...userCredentials, userTypeId: newUserObj.id }).then(userObj => {
+    Collegeuser.create({ ...userCredentials, userId: newUserObj.id }).then(userObj => {
       cb(null, {
         userData: newUserObj,
         userBasicInfo: userObj

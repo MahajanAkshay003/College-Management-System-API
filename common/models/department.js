@@ -5,7 +5,7 @@ module.exports = function (Department) {
   disableRemoteMethods(Department);
   Department.addDepartment = function (departmentName, departmentHodId, departmentDescription, cb) {
     Department.create({ departmentName, departmentHodId, departmentDescription }).then(departmentObj => {
-      return cb (null, { msg: departmentObj });
+      return cb (null, { department: departmentObj });
     }).catch(error => {
       return cb (error);
     });
@@ -17,7 +17,7 @@ module.exports = function (Department) {
       return cb({ error });
     })
   }
-  Department.getDepartmentById = function (departmentId, cb) { 
+  Department.getDepartmentById = function (departmentId, cb) {
     Department.findById(departmentId).then(department => {
       return cb(null, { department });
     }).catch(error => {
@@ -56,7 +56,7 @@ module.exports = function (Department) {
       { arg: "departmentId", type: "string" },
       { arg: "facultyId", type: "string" }
     ],
-    retuns: { arg: "data", root: true }
+    returns: { arg: "data", root: true }
   });
   Department.remoteMethod('updateDepartmentById', {
     accepts: [

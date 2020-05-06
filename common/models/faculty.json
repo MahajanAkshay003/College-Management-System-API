@@ -18,6 +18,10 @@
       "type": "string",
       "required": true
     },
+    "fullName": {
+      "type": "string",
+      "required": true
+    },
     "departmentId": {
       "type": "string",
       "required": true
@@ -45,8 +49,16 @@
       "type": "belongsTo",
       "model": "Department",
       "foreignKey": "departmentId"
+    },
+    "attendance": {
+      "type": "hasMany",
+      "model": "Attendance",
+      "foreignKey": "facultyId"
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "prototype.fullName": {
+    }
+  }
 }

@@ -10,10 +10,6 @@
       "type": "string",
       "required": true
     },
-    "userType": {
-      "type": "string",
-      "required": true
-    },
     "firstName": {
       "type": "string",
       "required": true
@@ -22,6 +18,10 @@
       "type": "string"
     },
     "lastName": {
+      "type": "string",
+      "required": true
+    },
+    "fullName": {
       "type": "string",
       "required": true
     },
@@ -37,11 +37,7 @@
       "type": "string",
       "required": true
     },
-    "semesterId": {
-      "type": "string",
-      "required": true
-    },
-    "email": {
+    "semester": {
       "type": "string",
       "required": true
     },
@@ -90,6 +86,10 @@
     "ipuRank": {
       "type": "string",
       "required": true
+    },
+    "quota": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
@@ -103,11 +103,6 @@
       "type": "belongsTo",
       "model": "Batch",
       "foreignKey": "batchId"
-    },
-    "semester": {
-      "type": "belongsTo",
-      "model": "Semester",
-      "foreignKey": "semesterId"
     }
   },
   "acls": [],

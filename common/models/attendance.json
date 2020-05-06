@@ -6,17 +6,21 @@
     "validateUpsert": true
   },
   "properties": {
-    "studentId": {
+    "facultyId": {
       "type": "string",
       "required": true
     },
     "date": {
-      "type": "date",
+      "type": "integer",
       "required": true
     },
-    "timeTableId": {
+    "entryTime": {
       "type": "string",
-      "required": true
+      "required": false
+    },
+    "exitTime": {
+      "type": "string",
+      "required": false
     },
     "isPresent": {
       "type": "boolean",
@@ -25,16 +29,6 @@
   },
   "validations": [],
   "relations": {
-    "timetable": {
-      "type": "belongsTo",
-      "model": "TimeTable",
-      "foreignKey": "timeTableId"
-    },
-    "student": {
-      "type": "belongsTo",
-      "model": "Student",
-      "foreignKey": "studentId"
-    }
   },
   "acls": [],
   "methods": {}

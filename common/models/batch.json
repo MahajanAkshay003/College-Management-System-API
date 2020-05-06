@@ -10,7 +10,7 @@
       "type": "string",
       "required": true
     },
-    "batchDescription": {
+    "batchName": {
       "type": "string",
       "required": true
     }

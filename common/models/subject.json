@@ -1,12 +1,16 @@
 {
   "name": "Subject",
   "base": "PersistedModel",
-  "idInjection": true,
+  "idInjection": false,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "semesterId": {
+    "subjectId": {
+      "type": "string",
+      "required": true
+    },
+    "semester": {
       "type": "string",
       "required": true
     },
@@ -23,7 +27,7 @@
       "required": true
     },
     "credits": {
-      "type": "number",
+      "type": "string",
       "required": true
     },
     "subjectType": {
@@ -33,19 +37,9 @@
   },
   "validations": [],
   "relations": {
-    "semester": {
-      "type": "belongsTo",
-      "model": "Semester",
-      "foreignKey": "semesterId"
-    },
     "department": {
       "type": "belongsTo",
       "model": "Department",
-      "foreignKey": "departmentId"
-    },
-    "faculty": {
-      "type": "belongsTo",
-      "model": "Faculty",
       "foreignKey": "departmentId"
     }
   },
