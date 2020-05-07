@@ -10,8 +10,8 @@
       "type": "string",
       "required": true
     },
-    "date": {
-      "type": "integer",
+    "attendanceDate": {
+      "type": "number",
       "required": true
     },
     "entryTime": {

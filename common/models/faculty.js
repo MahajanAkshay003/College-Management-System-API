@@ -35,7 +35,7 @@ module.exports = function(Faculty) {
         scope: { include: [{ relation: "departmentHod" }] }
       }, {
         relation: "attendance",
-        scope: { where: { data: getCurrentTimeStamp() } }
+        scope: { where: { attendanceDate: getCurrentTimeStamp() } }
       }
       ]
     });
@@ -66,6 +66,7 @@ module.exports = function(Faculty) {
   });
 
   Faculty.remoteMethod ('getFaculties', {
+    http: { verb: 'get' },
     accepts: [
       { arg: "whereFilter", type: "object" }
     ],

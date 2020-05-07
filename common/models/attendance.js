@@ -3,14 +3,30 @@ const disableRemoteMethods = require('../../server/custom_modules/disableMethods
 
 module.exports = function(Attendance) {
   disableRemoteMethods(Attendance);
-  Attendance.addFacultyAttendance = function (studentId, date, timeTableId, isPresent, cb) {
-    Attendance.create({
-      studentId, date, timeTableId, isPresent
-    }).then (attendanceObj => {
-      cb(null, { result: attendanceObj });
-    }).catch (error => {
-      cb({ error });
-    })
+  Attendance.addFacultyAttendance = function (facultyId, date, entryTime, exitTime, isPresent, type, attendanceId, cb) {
+    switch (type) {
+      case "entry":
+        Attendance.create({
+          facultyId, attendanceDate: date, entryTime, exitTime, isPresent
+        }).then (attendanceObj => {
+          cb(null, { result: attendanceObj });
+        }).catch (error => {
+          console.log(error);
+          cb({ error });
+        })
+        break;
+      case "exit":
+        Attendance.upsertWithWhere({ id: attendanceId }, { exitTime })
+          .then (attendanceObj => {
+            cb(null, { result: attendanceObj });
+          }).catch (error => {
+            console.log(error);
+            cb({ error });
+          });
+        break;
+      default:
+        cb({ error: "Invalid Type" });
+    }
   }
   Attendance.getAttendanceByDate = function (studentId, from, to, cb) {
     Attendance.find({
@@ -76,11 +92,14 @@ module.exports = function(Attendance) {
       { arg: "date", type: "number" },
       { arg: "entryTime", type: "string" },
       { arg: "exitTime", type: "string" },
-      { arg: "isPresent", type: "boolean" }
+      { arg: "isPresent", type: "boolean" },
+      { arg: "type", type: "string" },
+      { arg: "attendanceId", type: "string" }
     ],
     returns: { arg: "data", root: true }
   });
   Attendance.remoteMethod('getAttendanceByDate', {
+    http: { verb: 'get' },
     accepts: [
       { arg: "studentId", type: "string" },
       { arg: "from", type: "date" },
