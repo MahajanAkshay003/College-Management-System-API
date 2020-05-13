@@ -27,6 +27,16 @@
       "model": "Role",
       "foreignKey": "principalId",
       "through": "RoleMapping"
+    },
+    "student": {
+      "type": "belongsTo",
+      "model": "Student",
+      "foreignKey": "userId"
+    },
+    "faculty": {
+      "type": "belongsTo",
+      "model": "Faculty",
+      "foreignKey": "userId"
     }
   },
   "acls": [

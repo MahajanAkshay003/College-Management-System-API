@@ -1,0 +1,33 @@
+{
+  "name": "AnnouncementStudentMapping",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "announcementId": {
+      "type": "string",
+      "required": true
+    },
+    "studentId": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "student": {
+      "type": "belongsTo",
+      "model": "Student",
+      "foreignKey": "studentId"
+    },
+    "announcement": {
+      "type": "belongsTo",
+      "model": "Announcement",
+      "foreignKey": "announcementId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

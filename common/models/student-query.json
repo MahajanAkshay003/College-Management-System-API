@@ -1,0 +1,54 @@
+{
+  "name": "StudentQuery",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "facultyId": {
+      "type": "string",
+      "required": true
+    },
+    "studentId": {
+      "type": "string",
+      "required": true
+    },
+    "questionTitle": {
+      "type": "string",
+      "required": true
+    },
+    "questionDescription": {
+      "type": "string",
+      "required": true
+    },
+    "isAnswered": {
+      "type": "boolean",
+      "default": false
+    },
+    "createdAt": {
+      "type": "date",
+      "default": "$now"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "faculty": {
+      "type": "belongsTo",
+      "model": "Faculty",
+      "foreignKey": "facultyId"
+    },
+    "student": {
+      "type": "belongsTo",
+      "model": "Student",
+      "foreignKey": "studentId"
+    },
+    "answers": {
+      "type": "hasMany",
+      "model": "StudentQueryAnswers",
+      "foreignKey": "studentQueryId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -68,5 +68,33 @@
   "RoleMapping": {
     "dataSource": "mongoDb",
     "public": false
+  },
+  "Announcement": {
+    "dataSource": "mongoDb",
+    "public": true
+  },
+  "TnpEmployee": {
+    "dataSource": "mongoDb",
+    "public": true
+  },
+  "AdminEmployee": {
+    "dataSource": "mongoDb",
+    "public": true
+  },
+  "ExamCellEmployee": {
+    "dataSource": "mongoDb",
+    "public": true
+  },
+  "AnnouncementStudentMapping": {
+    "dataSource": "mongoDb",
+    "public": true
+  },
+  "StudentQuery": {
+    "dataSource": "mongoDb",
+    "public": true
+  },
+  "StudentQueryAnswers": {
+    "dataSource": "mongoDb",
+    "public": true
   }
 }

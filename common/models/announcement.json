@@ -1,0 +1,54 @@
+{
+  "name": "Announcement",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "subject": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "senderId": {
+      "type": "string",
+      "required": true
+    },
+    "senderType": {
+      "type": "string",
+      "required": true
+    },
+    "announcementDate": {
+      "type": "date",
+      "default": "$now"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "faculty": {
+      "type": "belongsTo",
+      "model": "Faculty",
+      "foreignKey": "senderId"
+    },
+    "tnp": {
+      "type": "belongsTo",
+      "model": "TnpEmployee",
+      "foreignKey": "senderId"
+    },
+    "examCell": {
+      "type": "belongsTo",
+      "model": "ExamCellEmployee",
+      "foreignKey": "senderId"
+    },
+    "admin": {
+      "type": "belongsTo",
+      "model": "AdminEmployee",
+      "foreignKey": "senderId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

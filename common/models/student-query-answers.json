@@ -1,0 +1,32 @@
+{
+  "name": "StudentQueryAnswers",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "studentQueryId": {
+      "type": "string",
+      "required": true
+    },
+    "answer": {
+      "type": "string",
+      "required": true
+    },
+    "createdAt": {
+      "type": "date",
+      "default": "$now"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "query": {
+      "type": "belongsTo",
+      "model": "StudentQuery",
+      "foreignKey": "studentQueryId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

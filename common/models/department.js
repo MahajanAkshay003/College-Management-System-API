@@ -11,7 +11,7 @@ module.exports = function (Department) {
     });
   }
   Department.getDepartments = function (cb) {
-    Department.find({}).then(departments => {
+    Department.find({ include: ["departmentHod"] }).then(departments => {
       return cb (null, { departments });
     }).catch(error => {
       return cb({ error });

@@ -10,8 +10,8 @@
       "type": "string",
       "required": true
     },
-    "semesterId": {
-      "type": "string",
+    "semester": {
+      "type": "number",
       "required": true
     },
     "subjectId": {
@@ -33,15 +33,11 @@
   },
   "validations": [],
   "relations": {
-    "semester": {
-      "type": "hasOne",
-      "model": "Semester",
-      "foreignKey": "semesterId"
-    },
     "subject": {
-      "type": "hasOne",
+      "type": "belongsTo",
       "model": "Subject",
-      "foreignKey": "subjectId"
+      "foreignKey": "subjectId",
+      "primaryKey": "subjectId"
     },
     "student": {
       "type": "belongsTo",

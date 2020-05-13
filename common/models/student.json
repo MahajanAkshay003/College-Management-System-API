@@ -90,6 +90,10 @@
     "quota": {
       "type": "string",
       "required": true
+    },
+    "email": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
@@ -103,6 +107,11 @@
       "type": "belongsTo",
       "model": "Batch",
       "foreignKey": "batchId"
+    },
+    "marks": {
+      "type": "hasMany",
+      "model": "Marks",
+      "foreignKey": "studentId"
     }
   },
   "acls": [],

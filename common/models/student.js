@@ -6,17 +6,19 @@ module.exports = function(Student) {
   Student.getStudentDetails = function (studentId, cb) {
     Student.findOne({
       where: { id: studentId },
-      include: [{ relation: "department", scope: { include: ["departmentHod"] } }, "batch"]
+      include: [
+        { relation: "department", scope: { include: ["departmentHod"] } },
+        "batch",
+        { relation: "marks", scope: { include: ["subject"] }}
+      ]
     }).then(studentObj => {
-      const { semester, departmentId, batchId, yearOfAdmission } = studentObj;
-      const { Subject, TimeTable } = Student.app.models;
-      Subject.find({ where: { departmentId, semester } }).then(subjects => {
-        cb(null, { student: studentObj, subjects });
-      });
+        cb(null, { student: studentObj });
     }).catch(error => {
+      console.log(error);
       return cb({ error });
     });
   }
+
   Student.getStudentByRollNumber = function (rollNumber, cb) {
     Student.findOne({
       where: { rollNumber },
@@ -34,6 +36,33 @@ module.exports = function(Student) {
       return cb({ error });
     });
   }
+
+  Student.getStudents = function (whereFilter, cb) {
+    const currentYear = new Date().getFullYear();
+    const findStudentsPromise = Student.find({
+      where: { ...whereFilter, yearOfAdmission: { gte: currentYear - 4 } },
+      include: [
+        {
+          relation: "department",
+          scope: { include: [{ relation: "departmentHod" }] }
+        },
+        "batch", "marks"
+      ]
+    });
+    findStudentsPromise.then(students => {
+      cb(null, { students });
+    }).catch(error => {
+      cb({ error });
+    });
+  }
+
+  Student.remoteMethod ('getStudents', {
+    http: { verb: 'get' },
+    accepts: [
+      { arg: "whereFilter", type: "object" }
+    ],
+    returns: { arg: 'data', root: true }
+  })
 
   Student.remoteMethod ('getStudentByRollNumber', {
     accepts: [{ arg: "rollNumber", type: "string" }],

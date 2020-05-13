@@ -41,6 +41,10 @@
     "prefix": {
       "type": "string",
       "required": true
+    },
+    "email": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
@@ -58,7 +62,6 @@
   },
   "acls": [],
   "methods": {
-    "prototype.fullName": {
-    }
+    "prototype.fullName": {}
   }
 }
