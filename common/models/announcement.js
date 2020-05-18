@@ -34,7 +34,7 @@ module.exports = function(Announcement) {
     AnnouncementStudentMapping.find({ where: { studentId }, include: [{
       relation: "announcement",
       scope: {
-        include: ["faculty", "tnp", "examCell"]
+        include: ["faculty", "tnp", "examCell", "admin"]
       }
     }] }).then(announcements => {
       cb(null, { announcements });
